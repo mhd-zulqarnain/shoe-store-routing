@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { Link , Route, Routes } from 'react-router-dom';
+import Home from './components/Home'
+import Product from './components/Products'
+import ProductDetails from './components/ProductDetails'
+const NoPageFound = () => {
+  return (
+    <div><h1>No Page founs</h1></div>
+  )
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome</h1>
+      <Link to="/home">Home</Link>
+      <Link to="/products"> Products</Link>
+      <Link to="/products/devices"> Device</Link>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/home' element={<Home/>}/>
+        <Route path='/products' element={<Product/>}/>
+        <Route path='/products/:productId' element={<ProductDetails/>}/>
+        <Route path='*' element={<NoPageFound/>}/>
+      </Routes>
     </div>
   );
 }
